@@ -1,0 +1,92 @@
+.page-element {
+  width: 100%;
+
+  .header {
+    margin: 0 auto;
+    width: 90%;
+    padding: 10px;
+  }
+
+  .body {
+    margin: 0 auto;
+    width: 90%;
+    padding: 10px;
+
+    .container {
+      display: flex;
+      width: 100%;
+      margin: 0 auto;
+      overflow: hidden;
+      background-color: #1f1f1f;
+      border-radius: 7px;
+      border: 1px solid #00ff00; /* Couleur verte vive pour l'effet néon */
+      box-shadow: 0 0 10px #6c38c4, 0 0 5px #6c38c4, 0 0 10px #6c38c4,
+        0 0 15px #6c38c4;
+      transition: border-color 0.5s, box-shadow 0.5s;
+
+
+
+      .atom-animation-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 300px; /* Ajustez la hauteur selon vos besoins */
+      }
+    
+      canvas {
+        width: 100% !important;
+        height: 100% !important;
+    
+      }
+
+      .animation {
+        z-index: 0;
+        width: 400px;
+        height: 200px;
+        padding: 10px;
+        margin: 5px;
+        margin-top: 90px;
+        transition: 0.7s;
+
+        &:hover {
+          transform: scale(2.5);
+        }
+      }
+
+      .informations {
+        width: 100%;
+        padding: 10px;
+        z-index: 2;
+
+        .element-table {
+          width: 100%;
+          border-collapse: collapse;
+          margin-top: 20px;
+          border-radius: 7px;
+        }
+
+        .element-table td {
+          padding: 8px;
+          border: 1px solid #ddd;
+        }
+
+        .element-table td:first-child {
+          font-weight: bold;
+          background-color: #f5f5f5;
+          color: black;
+        }
+      }
+    }
+
+    .error {
+      padding: 10px;
+      margin: 10px auto;
+      color: red;
+    }
+
+    .loading {
+      padding: 10px;
+      margin: 10px auto;
+    }
+  }
+}
