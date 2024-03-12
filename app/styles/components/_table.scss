@@ -2,8 +2,6 @@
   margin: 0 auto;
   width: 95%;
 
-
-
   .periodicTable {
     display: flex;
     color: black;
@@ -13,7 +11,6 @@
 
     .tableColumn {
       margin: 0;
-
 
       .element {
         display: flex;
@@ -28,7 +25,7 @@
         height: 60px;
         width: 60px;
         opacity: 0.6;
-    
+
         &:not(.empty) {
           &:hover {
             opacity: 1;
@@ -36,64 +33,63 @@
             cursor: pointer;
           }
         }
-    
+
         &.nonmetal {
           background-color: #ff5252;
         }
-    
+
         &.noble-gas {
           background-color: #ff4081;
         }
-    
+
         &.alkali-metal {
           background-color: #ff669d;
         }
-    
+
         &.alkaline-earth-metal {
           background-color: #ff8cc1;
         }
-    
+
         &.metalloid {
           background-color: #ffabf2;
         }
-    
+
         &.halogen {
           background-color: #9c6eff;
         }
-    
+
         &.metal {
           background-color: #536dfe;
         }
-    
+
         &.transition-metal {
           background-color: #4ae8b0;
         }
-    
+
         &.lanthanoid {
           background-color: #69f0ae;
           color: #e8cffd;
         }
-    
+
         &.actinoid {
           background-color: #b2ff59;
           color: #e8cffd;
         }
-    
+
         &.post-transition-metal {
           background-color: #eeff41;
         }
 
-
         .symbol {
           font-weight: bold;
         }
-      
+
         .name {
           text-align: center;
           font-size: 11px;
           max-height: 3em;
         }
-      
+
         .atomicNumber,
         .atomicMass {
           text-align: center;
@@ -108,29 +104,21 @@
         color: rgb(232, 207, 253);
         width: 60px;
         display: flex;
-    
+
         align-items: center;
         justify-content: center;
         text-align: center;
-    
+
         .rotate-text {
           transform: rotate(45deg);
           display: inline-block;
           font-weight: 800;
         }
       }
-    
+
       .empty {
         opacity: 0;
       }
-
-
-    
     }
   }
-
-
-
-
-
 }

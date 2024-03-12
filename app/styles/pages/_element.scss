@@ -24,19 +24,16 @@
         0 0 15px #6c38c4;
       transition: border-color 0.5s, box-shadow 0.5s;
 
-
-
       .atom-animation-container {
         display: flex;
         justify-content: center;
         align-items: center;
         height: 300px; /* Ajustez la hauteur selon vos besoins */
       }
-    
+
       canvas {
         width: 100% !important;
         height: 100% !important;
-    
       }
 
       .animation {
