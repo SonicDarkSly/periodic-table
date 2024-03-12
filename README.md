@@ -4,8 +4,8 @@ Ce projet est une application interactive qui permet de visualiser un tableau pÃ
 
 ## PrÃ©requis
 
-- Node.js
-- npm
+- Node.js >= 20.11.0
+- npm >= 10.2.4
 
 ## Installation
 
