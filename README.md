@@ -12,27 +12,29 @@ Ce projet est une application interactive qui permet de visualiser un tableau p�
 Clonez d'abord le dépôt à partir de GitHub :
 
 ```bash
-git clone <url-du-dépôt>
+git clone https://github.com/SonicDarkSly/periodic-table.git
+```
 
 Ensuite, naviguez vers le répertoire du projet :
 
-cd <nom-du-projet>
+```bash
+cd periodic-table
+```
 
 Installez les dépendances du projet avec npm :
 
+```bash
 npm install
+```
 
-Utilisation
+## Utilisation
 Pour lancer l’application, exécutez la commande suivante :
 
+```bash
 npm run dev
+```
 
 L’application sera accessible à l’adresse http://localhost:3000.
 
-Contribution
+## Contribution
 Les contributions sont les bienvenues. Pour toute modification majeure, veuillez d’abord ouvrir une issue pour discuter de ce que vous aimeriez changer.
-
-Licence
-MIT
-
-N'oubliez pas de remplacer `<url-du-dépôt>` et `<nom-du-projet>` par les informations réelles de votre projet.
