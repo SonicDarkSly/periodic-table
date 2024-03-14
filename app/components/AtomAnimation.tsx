@@ -273,7 +273,7 @@ const AtomAnimation: FC<AtomAnimationProps> = React.memo(
         requestAnimationFrame(render);
 
         valences.current.forEach((valence, i) => {
-          const rotationSpeedX = nucleusRotationSpeed + (i + 1) * (Math.random() * 0.02);
+          const rotationSpeedX = nucleusRotationSpeed + (i + 1) * (Math.random() * 0.020);
           const rotationSpeedY = nucleusRotationSpeed + (i + 1) * (Math.random() * 0.047);
           const rotationSpeedZ = nucleusRotationSpeed + (i + 2) * (Math.random() * 0.052);
 
