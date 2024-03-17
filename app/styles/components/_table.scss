@@ -98,9 +98,25 @@
         }
       }
 
-      .lanthanides,
-      .actinides {
+      .lanthanides {
         background-color: rgb(136, 0, 136);
+        color: rgb(232, 207, 253);
+        width: 60px;
+        display: flex;
+
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+
+        .rotate-text {
+          transform: rotate(45deg);
+          display: inline-block;
+          font-weight: 800;
+        }
+      }
+
+      .actinides {
+        background-color: rgb(70, 0, 136);
         color: rgb(232, 207, 253);
         width: 60px;
         display: flex;

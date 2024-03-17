@@ -172,21 +172,23 @@ const tableLayout: (number | null)[][] = [
 
       if (element) {
         elementsList.push(
-          <div
-            key={key++}
-            className={`element ${
-              startNumber === 57 ? "lanthanides" : "actinides"
-            }`}
-            onClick={() => handleClick(element.atomicNumber)}
-          >
-            <div className="symbol">{element.symbol}</div>
-            <div className="atomicNumber">{element.atomicNumber}</div>
-            <div className="atomicMass">
-              {typeof element.atomicMass === "number"
-                ? element.atomicMass.toFixed(2)
-                : parseFloat(element.atomicMass).toFixed(2)}
+          <div key={key++} className="tableColumn">
+            <div
+              key={key++}
+              className={`element ${
+                startNumber === 57 ? "lanthanides" : "actinides"
+              }`}
+              onClick={() => handleClick(element.atomicNumber)}
+            >
+              <div className="symbol">{element.symbol}</div>
+              <div className="atomicNumber">{element.atomicNumber}</div>
+              <div className="atomicMass">
+                {typeof element.atomicMass === "number"
+                  ? element.atomicMass.toFixed(2)
+                  : parseFloat(element.atomicMass).toFixed(2)}
+              </div>
             </div>
-          </div>
+          </div>,
         );
       } else {
         elementsList.push(
