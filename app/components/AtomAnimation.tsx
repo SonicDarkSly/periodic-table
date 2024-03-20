@@ -1,4 +1,4 @@
-import React, { useRef, useLayoutEffect, FC } from "react";
+import React, { useRef, useLayoutEffect, FC, useEffect } from "react";
 import * as THREE from "three";
 
 interface AtomAnimationProps {
@@ -8,6 +8,7 @@ interface AtomAnimationProps {
   elementData: {
     electronLayers: number[];
   };
+  animation: boolean;
 }
 
 const Colors = {
@@ -156,14 +157,15 @@ const createTorus = (
 };
 
 const AtomAnimation: FC<AtomAnimationProps> = React.memo(
-  ({ protonCount, neutronCount, electronCount, elementData }) => {
+  ({ protonCount, neutronCount, electronCount, elementData, animation }) => {
     const containerRef = useRef<HTMLDivElement>(null);
     const scene = useRef<THREE.Scene>(new THREE.Scene());
     const renderer = useRef<THREE.WebGLRenderer | null>(null);
     const camera = useRef<THREE.OrthographicCamera | null>(null);
     const valences = useRef<THREE.Group[]>([]);
+    const animationRef = useRef<boolean>(animation);
 
-    let nucleusRotationSpeed = neutronCount < 70 ? 0.014 : 0.011;
+    let nucleusRotationSpeed = neutronCount < 70 ? 0.034 : 0.031;
 
     let initialProtonCount: number | null;
     let initialNeutronCount: number | null;
@@ -270,24 +272,27 @@ const AtomAnimation: FC<AtomAnimationProps> = React.memo(
 
       // Animation
       function render() {
-        requestAnimationFrame(render);
+
+        if (animationRef.current) {
+          requestAnimationFrame(render);
+        }
 
         valences.current.forEach((valence, i) => {
-          const rotationSpeedX = nucleusRotationSpeed + (i + 1) * (Math.random() * 0.020);
-          const rotationSpeedY = nucleusRotationSpeed + (i + 1) * (Math.random() * 0.047);
-          const rotationSpeedZ = nucleusRotationSpeed + (i + 2) * (Math.random() * 0.052);
+          const rotationSpeedX = nucleusRotationSpeed + (i + 1) * (Math.random() * 0.010);
+          const rotationSpeedY = nucleusRotationSpeed + (i + 1) * (Math.random() * 0.007);
+          const rotationSpeedZ = nucleusRotationSpeed + (i + 2) * (Math.random() * 0.012);
 
           valence.rotation.y += rotationSpeedY;
           valence.rotation.x += rotationSpeedX;
           valence.rotation.z += rotationSpeedZ;
         });
 
+        // rotation du noyau
         nucleus.rotation.x += nucleusRotationSpeed;
         nucleus.rotation.y += nucleusRotationSpeed;
         nucleus.rotation.z += nucleusRotationSpeed;
 
-        if (renderer.current && camera.current)
-          renderer.current.render(scene.current, camera.current);
+        if (renderer.current && camera.current) renderer.current.render(scene.current, camera.current);
       }
 
       render();
@@ -306,7 +311,16 @@ const AtomAnimation: FC<AtomAnimationProps> = React.memo(
       zoom = 4;
     }
 
+    const startAnimation = () => {
+      animationRef.current = true;
+    };
+
+    const stopAnimation = () => {
+      animationRef.current = false;
+    };
+
     useLayoutEffect(() => {
+
       const width = window.innerWidth;
       const height = window.innerHeight;
 
@@ -375,8 +389,16 @@ const AtomAnimation: FC<AtomAnimationProps> = React.memo(
           initialElementData,
         );
       }
+
+      
       // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [protonCount, neutronCount, electronCount, elementData]);
+    }, [protonCount, neutronCount, electronCount, elementData, animation]);
+
+    if (animation) {
+      startAnimation();
+    } else {
+      stopAnimation();
+    }
 
     return <div className="animation" ref={containerRef}></div>;
   },

@@ -79,6 +79,10 @@
   margin: 0 auto;
   width: 95%;
 }
+.container-table h1, .container-table h2 {
+  text-align: center;
+  width: 100%;
+}
 .container-table .periodicTable {
   display: flex;
   color: black;

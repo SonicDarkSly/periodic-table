@@ -2,6 +2,11 @@
   margin: 0 auto;
   width: 95%;
 
+  h1, h2 {
+    text-align: center;
+    width: 100%;
+  }
+
   .periodicTable {
     display: flex;
     color: black;
