@@ -10,13 +10,13 @@
   .periodicTable {
     display: flex;
     color: black;
-    min-width: 100%;
+    width: 100%;
     justify-content: center;
-    align-items: flex-end;
 
     .tableColumn {
       margin: 0;
-
+        display: flex;
+        flex-direction: column;
       .element {
         display: flex;
         flex-direction: column;
@@ -30,6 +30,7 @@
         height: 60px;
         width: 60px;
         opacity: 0.6;
+        box-sizing: border-box;
 
         &:not(.empty) {
           &:hover {

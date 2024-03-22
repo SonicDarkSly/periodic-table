@@ -1,5 +1,6 @@
-import React, { useRef, useLayoutEffect, FC, useEffect } from "react";
+import React, { useRef, useLayoutEffect, FC, useState } from "react";
 import * as THREE from "three";
+import { PlaySquareOutlined } from "@ant-design/icons";
 
 interface AtomAnimationProps {
   protonCount: number;
@@ -8,7 +9,6 @@ interface AtomAnimationProps {
   elementData: {
     electronLayers: number[];
   };
-  animation: boolean;
 }
 
 const Colors = {
@@ -157,15 +157,15 @@ const createTorus = (
 };
 
 const AtomAnimation: FC<AtomAnimationProps> = React.memo(
-  ({ protonCount, neutronCount, electronCount, elementData, animation }) => {
+  ({ protonCount, neutronCount, electronCount, elementData }) => {
+
+    const [stopAnim, setStopAnim] = useState<boolean>(false); 
     const containerRef = useRef<HTMLDivElement>(null);
     const scene = useRef<THREE.Scene>(new THREE.Scene());
     const renderer = useRef<THREE.WebGLRenderer | null>(null);
     const camera = useRef<THREE.OrthographicCamera | null>(null);
     const valences = useRef<THREE.Group[]>([]);
-    const animationRef = useRef<boolean>(animation);
-
-    let nucleusRotationSpeed = neutronCount < 70 ? 0.034 : 0.031;
+    const animationRef = useRef<boolean>(stopAnim);
 
     let initialProtonCount: number | null;
     let initialNeutronCount: number | null;
@@ -197,6 +197,7 @@ const AtomAnimation: FC<AtomAnimationProps> = React.memo(
     ) => {
       scene.current.remove(...scene.current.children);
 
+      let nucleusRotationSpeed = neutronCount < 70 ? 0.074 : 0.059;
       const nucleus = new THREE.Group();
 
       const protonGeometry = new THREE.SphereGeometry(2, 12, 12);
@@ -278,9 +279,9 @@ const AtomAnimation: FC<AtomAnimationProps> = React.memo(
         }
 
         valences.current.forEach((valence, i) => {
-          const rotationSpeedX = nucleusRotationSpeed + (i + 1) * (Math.random() * 0.010);
-          const rotationSpeedY = nucleusRotationSpeed + (i + 1) * (Math.random() * 0.007);
-          const rotationSpeedZ = nucleusRotationSpeed + (i + 2) * (Math.random() * 0.012);
+          const rotationSpeedX = (i + 1) * (Math.random() * 0.010);
+          const rotationSpeedY = (i + 1) * (Math.random() * 0.007);
+          const rotationSpeedZ = nucleusRotationSpeed + (i) * (Math.random() * 0.012);
 
           valence.rotation.y += rotationSpeedY;
           valence.rotation.x += rotationSpeedX;
@@ -389,18 +390,26 @@ const AtomAnimation: FC<AtomAnimationProps> = React.memo(
           initialElementData,
         );
       }
-
       
       // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [protonCount, neutronCount, electronCount, elementData, animation]);
+    }, [protonCount, neutronCount, electronCount, elementData, stopAnim]);
 
-    if (animation) {
+    if (stopAnim) {
       startAnimation();
     } else {
       stopAnimation();
     }
 
-    return <div className="animation" ref={containerRef}></div>;
+    return (
+      <div>
+        <div className="animation" ref={containerRef}></div>
+        <div className="stop-and-start">
+          <button onClick={() => setStopAnim(!stopAnim)}>
+            <PlaySquareOutlined />
+          </button>
+        </div>
+      </div>
+    );
   },
 );
 

@@ -42,7 +42,6 @@ const ElementPage: React.FC = () => {
   const [element, setElement] = useState<Element | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
-  const [stopAnim, setStopAnim] = useState<boolean>(true); 
 
   const fetchElement = async (id: string | string[] | undefined) => {
     setLoading(true);
@@ -135,15 +134,10 @@ const ElementPage: React.FC = () => {
                     neutronCount={element.neutrons}
                     electronCount={element.electrons}
                     elementData={element}
-                    animation={stopAnim}
                   />
                 )}
 
                 <div className="informations">
-                  <div>
-                    <button onClick={() => setStopAnim(!stopAnim)}>Stop</button>
-                    {stopAnim ? "true" : "false"}
-                  </div>
                   <table className="element-table">
                     <tbody>
                       {element &&

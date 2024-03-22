@@ -19,7 +19,7 @@
       overflow: hidden;
       background-color: #1f1f1f;
       border-radius: 7px;
-      border: 1px solid #00ff00; /* Couleur verte vive pour l'effet néon */
+      border: 1px solid #00ff00;
       box-shadow: 0 0 10px #6c38c4, 0 0 5px #6c38c4, 0 0 10px #6c38c4,
         0 0 15px #6c38c4;
       transition: border-color 0.5s, box-shadow 0.5s;
@@ -28,12 +28,32 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 300px; /* Ajustez la hauteur selon vos besoins */
+        height: 300px;
       }
 
       canvas {
         width: 100% !important;
         height: 100% !important;
+      }
+
+      .stop-and-start {
+        width: 100%;
+        text-align: center;
+        transition: 0.7s;
+        transform: translateY(0);
+        margin-top: 50px;
+
+        button {
+          font-size: 50px;
+          background-color: #1f1f1f;
+          border: none;
+          background-color: #6c38c4;
+          box-shadow: 0 0 10px #6c38c4, 0 0 5px #6c38c4, 0 0 10px #6c38c4,
+            0 0 15px #6c38c4;
+          transition: border-color 0.5s, box-shadow 0.5s;
+          color: #00ff00;
+          transition: 0.5s;
+        }
       }
 
       .animation {
@@ -44,9 +64,14 @@
         margin: 5px;
         margin-top: 90px;
         transition: 0.7s;
+        cursor: zoom-in;
 
         &:hover {
           transform: scale(2.5);
+
+          +.stop-and-start {
+            opacity: 0.1;
+          }
         }
       }
 
